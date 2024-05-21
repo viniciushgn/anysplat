@@ -1,4 +1,4 @@
-PROJECTNAME = anysplat
+PROJECTNAME = anySplat
 OUTPUT_DIR = build
 
 INCLUDE_DIRS = -I include/SDL2 -I include/imgui

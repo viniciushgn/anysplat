@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-    SDL_Window* window_ptr = SDL_CreateWindow("anysplat", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
+    SDL_Window* window_ptr = SDL_CreateWindow("anySplat", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 800, SDL_WINDOW_SHOWN);
     if(!window_ptr){
         SDL_Quit();
         return -1;
@@ -34,13 +34,19 @@ int main(int argc, char* argv[]){
     ImGui_ImplSDLRenderer2_Init(renderer_ptr);
 
     bool running = true;
-    float f;
+    float f = 1.0f;//debug, probably delete
 
     while(running){
         SDL_Event e;
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                 running = false;
+            }
+            if (e.type == SDL_KEYDOWN)
+            {
+                if(e.key.keysym.sym == SDLK_ESCAPE){
+                    running = false;
+                }
             }
             ImGui_ImplSDL2_ProcessEvent(&e);
         }
@@ -50,11 +56,11 @@ int main(int argc, char* argv[]){
             ImGui_ImplSDL2_NewFrame();
             ImGui::NewFrame();
 
-            ImGui::Begin("note");
-            ImGui::Text("Hello World");
+            ImGui::Begin("note: ReadMe");
+            ImGui::Text("Hello World!\nThis is Anny\nthe personification of this viewer.\nHere are some useful\ninstructions:\n don't mess shit up");
             ImGui::End();
 
-            ImGui::Begin("Choose");
+            ImGui::Begin("Upload Splat File");
             ImGui::Text("Splat File %d", 123);
                 if (ImGui::Button("Upload")){
                     printf("file is received");
