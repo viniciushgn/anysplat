@@ -3,6 +3,9 @@
 #include <imgui_impl_sdlrenderer2.h>
 #include <SDL.h>
 
+#include <cstdio>//prints
+#include <iostream>//prints
+
 int main(int argc, char* argv[]){
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
         return -1;
@@ -31,6 +34,7 @@ int main(int argc, char* argv[]){
     ImGui_ImplSDLRenderer2_Init(renderer_ptr);
 
     bool running = true;
+    float f;
 
     while(running){
         SDL_Event e;
@@ -50,8 +54,14 @@ int main(int argc, char* argv[]){
             ImGui::Text("Hello World");
             ImGui::End();
 
-            ImGui::Begin("note second");
-            ImGui::Text("Hello Second World");
+            ImGui::Begin("Choose");
+            ImGui::Text("Splat File %d", 123);
+                if (ImGui::Button("Upload")){
+                    printf("file is received");
+                    std::cout << f << "\n";
+                }
+                    
+            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
             ImGui::End();
 
 
